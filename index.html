@@ -1,1 +1,135 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOC Monitor</title>
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#0b1120;
+color:#e5e7eb;
+}
+header{
+padding:22px;
+background:#111c30;
+border-bottom:1px solid #26344b;
+}
+header h1{margin:0;font-size:23px}
+header p{color:#94a3b8;margin:7px 0 0}
+main{padding:18px;max-width:1000px;margin:auto}
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+.card{
+background:#142137;
+border:1px solid #263b58;
+border-radius:12px;
+padding:17px;
+}
+.card small{color:#94a3b8}
+.number{font-size:28px;font-weight:bold;margin-top:12px}
+.green{color:#22c55e}
+.red{color:#ef4444}
+h2{font-size:17px;margin-top:28px}
+.status{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+background:#142137;
+border-radius:10px;
+margin-bottom:10px;
+}
+button{
+background:#2563eb;
+color:white;
+border:0;
+padding:13px 18px;
+border-radius:8px;
+font-weight:bold;
+margin-top:12px;
+}
+#history{color:#94a3b8;font-size:13px}
+@media(max-width:400px){
+.number{font-size:23px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🖥️ NOC MONITOR</h1>
+<p>Central de monitoramento de redes</p>
+</header>
+
+<main>
+<h2>Visão geral</h2>
+
+<div class="grid">
+<div class="card">
+<small>Equipamentos online</small>
+<div class="number green" id="online">3</div>
+</div>
+
+<div class="card">
+<small>Equipamentos offline</small>
+<div class="number red" id="offline">0</div>
+</div>
+
+<div class="card">
+<small>Latência média</small>
+<div class="number" id="ping">12 ms</div>
+</div>
+
+<div class="card">
+<small>Disponibilidade</small>
+<div class="number green">100%</div>
+</div>
+</div>
+
+<h2>Monitoramento</h2>
+
+<div id="devices">
+<div class="status">
+<span>🌐 Roteador principal</span>
+<strong class="green">ONLINE</strong>
+</div>
+<div class="status">
+<span>📡 OLT principal</span>
+<strong class="green">ONLINE</strong>
+</div>
+<div class="status">
+<span>🖥️ Servidor</span>
+<strong class="green">ONLINE</strong>
+</div>
+</div>
+
+<h2>Central de testes</h2>
+<button onclick="testar()">Executar teste</button>
+
+<h2>Histórico de eventos</h2>
+<div id="history">Sistema inicializado.</div>
+
+</main>
+
+<script>
+function testar(){
+const ping=Math.floor(Math.random()*20)+5;
+document.getElementById("ping").textContent=ping+" ms";
+
+const hora=new Date().toLocaleTimeString("pt-BR");
+
+document.getElementById("history").innerHTML=
+"["+hora+"] Teste demonstrativo executado. Ping: "+ping+" ms";
+}
+</script>
+
+</body>
+</html>
+
